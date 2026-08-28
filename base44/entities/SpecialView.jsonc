@@ -1,0 +1,54 @@
+{
+  "name": "SpecialView",
+  "type": "object",
+  "properties": {
+    "special_id": {
+      "type": "string",
+      "description": "ID of the special that was viewed"
+    },
+    "viewer_id": {
+      "type": "string",
+      "description": "Unique identifier for the viewer (user ID or anonymous browser ID)"
+    },
+    "business_name": {
+      "type": "string",
+      "description": "Business name of the viewed special"
+    },
+    "member_name": {
+      "type": "string",
+      "default": "",
+      "description": "Name and surname of the fusion member who viewed the special (from getUserCommunityGroups)"
+    },
+    "f_id": {
+      "type": "integer",
+      "default": 0,
+      "description": "Fusion user ID (fID) of the viewing member"
+    }
+  },
+  "required": [
+    "special_id",
+    "viewer_id"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

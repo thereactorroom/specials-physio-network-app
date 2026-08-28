@@ -1,0 +1,122 @@
+{
+  "name": "Business",
+  "type": "object",
+  "properties": {
+    "business_id": {
+      "type": "integer",
+      "description": "Fusion business ID (the API 'id')"
+    },
+    "unique_key_id": {
+      "type": "integer",
+      "default": 0
+    },
+    "user_key_id": {
+      "type": "integer",
+      "default": 0
+    },
+    "user_id": {
+      "type": "integer",
+      "default": 0,
+      "description": "Fusion user ID (fID) of the business owner"
+    },
+    "community_id": {
+      "type": "integer",
+      "default": 0
+    },
+    "content_id": {
+      "type": "string",
+      "default": ""
+    },
+    "business_name": {
+      "type": "string"
+    },
+    "country_code": {
+      "type": "string",
+      "default": ""
+    },
+    "contact_number": {
+      "type": "string",
+      "default": ""
+    },
+    "office_number": {
+      "type": "string",
+      "default": ""
+    },
+    "email": {
+      "type": "string",
+      "default": ""
+    },
+    "person_name": {
+      "type": "string",
+      "default": ""
+    },
+    "person_surname": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "logo": {
+      "type": "string",
+      "default": ""
+    },
+    "whatsapp": {
+      "type": "string",
+      "default": ""
+    },
+    "google_url": {
+      "type": "string",
+      "default": ""
+    },
+    "website_url": {
+      "type": "string",
+      "default": ""
+    },
+    "facebook_url": {
+      "type": "string",
+      "default": ""
+    },
+    "x_url": {
+      "type": "string",
+      "default": ""
+    },
+    "instagram_url": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "business_id",
+    "business_name"
+  ],
+  "rls": {
+    "create": null,
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

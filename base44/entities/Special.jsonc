@@ -1,0 +1,151 @@
+{
+  "name": "Special",
+  "type": "object",
+  "properties": {
+    "business_name": {
+      "type": "string",
+      "description": "Pre-filled company name"
+    },
+    "business_id": {
+      "type": "integer",
+      "default": 0,
+      "description": "External business ID from Fusion"
+    },
+    "f_id": {
+      "type": "integer",
+      "default": 0,
+      "description": "External Fusion user ID for unique view tracking"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short bold headline for the offer"
+    },
+    "description": {
+      "type": "string",
+      "description": "Multi-line description of the offer"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "food_drink",
+        "services",
+        "retail",
+        "health_fitness",
+        "events"
+      ],
+      "description": "Category of the special"
+    },
+    "offer_type": {
+      "type": "string",
+      "enum": [
+        "discount",
+        "value_add",
+        "limited_time",
+        "event"
+      ],
+      "description": "Type of offer"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Start date of the special"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "End date of the special"
+    },
+    "today_only": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is a today-only special"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Optional image for the special"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "cancelled",
+        "expired"
+      ],
+      "default": "active",
+      "description": "Current status of the special"
+    },
+    "unique_views": {
+      "type": "integer",
+      "default": 0,
+      "description": "Count of unique views for this special"
+    }
+  },
+  "required": [
+    "business_name",
+    "title",
+    "description",
+    "category",
+    "offer_type",
+    "start_date",
+    "end_date"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "data.status": {
+            "$in": [
+              "active",
+              "paused",
+              "cancelled",
+              "expired"
+            ]
+          }
+        },
+        {
+          "data.f_id": "{{user.data.f_id}}"
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "data.f_id": "{{user.data.f_id}}"
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "data.f_id": "{{user.data.f_id}}"
+        }
+      ]
+    }
+  }
+}
