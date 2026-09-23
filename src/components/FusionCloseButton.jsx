@@ -9,6 +9,7 @@ import { ArrowLeft } from "lucide-react";
 // own in-page navigation (view log, special view/preview, create/edit, history).
 const HIDDEN_PATTERNS = [
   /^\/admin\/views/,
+  /^\/admin\/cron/,
   /^\/specials\/view\//,
   /^\/specials\/preview$/,
   /^\/specials\/create$/,

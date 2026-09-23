@@ -18,6 +18,7 @@ import PreviewSpecial from './pages/PreviewSpecial';
 import SpecialView from './pages/SpecialView';
 import HistorySpecials from './pages/HistorySpecials';
 import AdminViewLog from './pages/AdminViewLog';
+import AdminCronLog from './pages/AdminCronLog';
 import BusinessNotFound from './pages/BusinessNotFound';
 
 const AuthenticatedApp = () => {
@@ -114,6 +115,7 @@ const AuthenticatedApp = () => {
         <Route path="/specials/history" element={<HistorySpecials />} />
         <Route path="/admin/views/:specialId" element={<AdminViewLog />} />
         <Route path="/admin/views" element={<AdminViewLog />} />
+        <Route path="/admin/cron" element={<AdminCronLog />} />
         <Route path="/business-not-found" element={<BusinessNotFound />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

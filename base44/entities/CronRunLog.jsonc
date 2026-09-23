@@ -1,0 +1,67 @@
+{
+  "name": "CronRunLog",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string",
+      "enum": [
+        "cron",
+        "manual"
+      ],
+      "default": "cron",
+      "description": "How the expiry run was triggered: scheduled cron or manual admin run"
+    },
+    "expired_count": {
+      "type": "integer",
+      "default": 0,
+      "description": "Number of specials marked expired by this run"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "error"
+      ],
+      "default": "success",
+      "description": "Whether the run completed successfully"
+    },
+    "message": {
+      "type": "string",
+      "default": "",
+      "description": "Summary of the run, or the error message on failure"
+    },
+    "expired_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "IDs of the specials that were marked expired"
+    }
+  },
+  "required": [
+    "source"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
