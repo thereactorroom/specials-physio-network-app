@@ -5,17 +5,13 @@ export default async function(req: Request): Promise<Response> {
   try {
     const base44 = createClientFromRequest(req);
 
-    // Manual runs (from the admin section) are admin-only; the workflow's
-    // scheduled runs pass no body and default to 'cron'.
+    // The workflow's scheduled runs pass no body ('cron'); the admin section's
+    // "Run now" button passes source: 'manual'. No server-side role check:
+    // app sessions in the Fusion iframe are anonymous, and the operation is
+    // idempotent — it only expires specials already past their end date, which
+    // is exactly what the nightly cron does. The admin UI gates the button.
     const body = await req.json().catch(() => ({}));
     source = body?.source === 'manual' ? 'manual' : 'cron';
-    if (source === 'manual') {
-      let user = null;
-      try { user = await base44.auth.me(); } catch (e) {}
-      if (!user || user.role !== 'admin') {
-        return Response.json({ error: 'Admin access required' }, { status: 403 });
-      }
-    }
 
     // Today's date in YYYY-MM-DD, in Johannesburg time (matches the workflow's
     // midnight-SAST schedule; UTC date is still "yesterday" when the cron fires)
