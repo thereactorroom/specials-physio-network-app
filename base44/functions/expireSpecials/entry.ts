@@ -4,8 +4,9 @@ export default async function(req: Request): Promise<Response> {
   try {
     const base44 = createClientFromRequest(req);
 
-    // Today's date in YYYY-MM-DD
-    const today = new Date().toISOString().split('T')[0];
+    // Today's date in YYYY-MM-DD, in Johannesburg time (matches the workflow's
+    // midnight-SAST schedule; UTC date is still "yesterday" when the cron fires)
+    const today = new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString().split('T')[0];
 
     // Find active/paused specials whose end_date is before today
     const expired = await base44.asServiceRole.entities.Special.filter({
