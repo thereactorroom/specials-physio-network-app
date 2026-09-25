@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { Input } from "@/components/ui/input";
-import { ChevronLeft, Search, Menu, Download, Loader2, Eye, Users, Clock } from "lucide-react";
+import { ChevronLeft, Search, Menu, Download, Loader2, Eye, Users, Clock, Palette } from "lucide-react";
 import { format, addHours } from "date-fns";
 
 // CAT (Africa/Johannesburg) is UTC+2 with no daylight saving.
@@ -162,6 +162,10 @@ export default function AdminViewLog() {
               <DropdownMenuItem onClick={() => navigate(`/admin/cron${fullQuery}`)}>
                 <Clock className="w-4 h-4 mr-2" />
                 Cron Logs
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate(`/admin/branding${fullQuery}`)}>
+                <Palette className="w-4 h-4 mr-2" />
+                Branding Setup
               </DropdownMenuItem>
               <DropdownMenuItem onClick={exportCSV}>
                 <Download className="w-4 h-4 mr-2" />

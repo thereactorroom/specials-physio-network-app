@@ -16,7 +16,7 @@ export default function AppHeader({ title, subtitle, businessName, showBack = fa
           </button>
         )}
         <div className="flex-1">
-          <h1 className="text-lg font-bold text-foreground">{title}</h1>
+          <h1 className="text-lg font-bold text-foreground font-heading">{title}</h1>
           {businessName && <p className="text-xs font-semibold text-foreground/70 mt-0.5">{businessName}</p>}
           {subtitle && <p className="text-xs text-muted-foreground mt-0">{subtitle}</p>}
         </div>

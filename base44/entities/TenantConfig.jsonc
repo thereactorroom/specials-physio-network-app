@@ -1,0 +1,64 @@
+{
+  "name": "TenantConfig",
+  "type": "object",
+  "properties": {
+    "app_name": {
+      "type": "string",
+      "default": "",
+      "description": "Tenant app display name shown in headers, page title and previews"
+    },
+    "tagline": {
+      "type": "string",
+      "default": "",
+      "description": "Short tagline shown under the app name"
+    },
+    "logo_url": {
+      "type": "string",
+      "default": "",
+      "description": "Optional tenant logo image URL"
+    },
+    "primary_color": {
+      "type": "string",
+      "default": "#0d9488",
+      "description": "Primary brand color as a hex value"
+    },
+    "accent_color": {
+      "type": "string",
+      "default": "#f97316",
+      "description": "Accent brand color as a hex value"
+    },
+    "theme_mode": {
+      "type": "string",
+      "enum": [
+        "light",
+        "dark"
+      ],
+      "default": "light",
+      "description": "Tenant app background theme"
+    },
+    "heading_font": {
+      "type": "string",
+      "default": "Inter",
+      "description": "Google Font used for headings"
+    },
+    "body_font": {
+      "type": "string",
+      "default": "Inter",
+      "description": "Google Font used for body text"
+    },
+    "configured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether first-run branding setup has been completed for this tenant"
+    }
+  },
+  "required": [
+    "app_name"
+  ],
+  "rls": {
+    "create": null,
+    "read": null,
+    "update": null,
+    "delete": null
+  }
+}

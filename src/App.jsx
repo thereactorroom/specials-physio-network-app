@@ -19,7 +19,9 @@ import SpecialView from './pages/SpecialView';
 import HistorySpecials from './pages/HistorySpecials';
 import AdminViewLog from './pages/AdminViewLog';
 import AdminCronLog from './pages/AdminCronLog';
+import BrandingSetup from './pages/BrandingSetup';
 import BusinessNotFound from './pages/BusinessNotFound';
+import { BrandingProvider } from '@/lib/brandingContext';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -103,7 +105,7 @@ const AuthenticatedApp = () => {
 
   // Render the main app
   return (
-    <>
+    <BrandingProvider>
       <IframeDetector />
       <FusionCloseButton />
       <Routes>
@@ -116,10 +118,11 @@ const AuthenticatedApp = () => {
         <Route path="/admin/views/:specialId" element={<AdminViewLog />} />
         <Route path="/admin/views" element={<AdminViewLog />} />
         <Route path="/admin/cron" element={<AdminCronLog />} />
+        <Route path="/admin/branding" element={<BrandingSetup />} />
         <Route path="/business-not-found" element={<BusinessNotFound />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
-    </>
+    </BrandingProvider>
   );
 };
 

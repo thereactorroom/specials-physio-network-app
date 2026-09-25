@@ -5,7 +5,10 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
-  			inter: ['var(--font-inter)']
+  			inter: ['var(--font-inter)'],
+  			heading: ['var(--font-heading)'],
+  			jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+  			jetbrains: ['"JetBrains Mono"', 'monospace']
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

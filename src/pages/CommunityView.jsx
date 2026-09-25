@@ -9,6 +9,7 @@ import MostViewedSection from "@/components/specials/MostViewedSection";
 import PullToRefresh from "@/components/PullToRefresh";
 import { getParamCaseInsensitive } from "@/lib/urlParams";
 import { useIsAdmin } from "@/lib/fusionAdminStore";
+import { useBranding } from "@/lib/brandingContext";
 
 const filters = [
   { key: "all", label: "All", icon: LayoutGrid },
@@ -24,6 +25,7 @@ export default function CommunityView() {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("all");
   const isAdmin = useIsAdmin();
+  const { branding } = useBranding();
 
   const buildQuery = () => {
     const params = [];
@@ -71,11 +73,14 @@ export default function CommunityView() {
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-border/40">
         <div className="max-w-lg mx-auto px-4 py-5">
           <div className="flex items-start justify-between gap-3">
-            <div>
-              <h1 className="text-xl font-bold text-foreground">Community Specials</h1>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                Exclusive offers from businesses we know and trust in our community
-              </p>
+            <div className="flex items-center gap-3">
+              {branding.logo_url && (
+                <img src={branding.logo_url} alt="" className="w-10 h-10 rounded-xl object-cover border border-border/50 shrink-0" />
+              )}
+              <div>
+                <h1 className="text-xl font-bold text-foreground font-heading">{branding.app_name}</h1>
+                <p className="text-xs text-muted-foreground mt-0.5">{branding.tagline}</p>
+              </div>
             </div>
             {isAdmin && (
               <button
