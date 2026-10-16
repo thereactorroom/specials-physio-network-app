@@ -62,7 +62,8 @@ export default function CreateEditSpecial() {
     if (effectiveFId > 0) params.push(`fID=${effectiveFId}`);
     if (effectiveBusinessId > 0) params.push(`BusinessID=${effectiveBusinessId}`);
     if (businessParam) params.push(`business=${encodeURIComponent(businessParam)}`);
-    return params.length ? `?${params.join("&")}` : "";
+    params.push("create=true");
+    return `?${params.join("&")}`;
   })();
 
   useEffect(() => {

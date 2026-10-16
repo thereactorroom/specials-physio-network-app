@@ -44,7 +44,7 @@ export default function PreviewSpecial() {
     onSuccess: () => {
       sessionStorage.removeItem("preview-special");
       queryClient.invalidateQueries({ queryKey: ["specials-active"] });
-      navigate("/");
+      navigate("/?create=true");
     },
   });
 
@@ -53,7 +53,7 @@ export default function PreviewSpecial() {
     onSuccess: () => {
       sessionStorage.removeItem("preview-special");
       queryClient.invalidateQueries({ queryKey: ["specials-active"] });
-      navigate("/");
+      navigate("/?create=true");
     },
   });
 
@@ -86,7 +86,8 @@ export default function PreviewSpecial() {
           if (special?.f_id > 0) params.push(`fID=${special.f_id}`);
           if (special?.business_id > 0) params.push(`BusinessID=${special.business_id}`);
           if (special?.business_name) params.push(`business=${encodeURIComponent(special.business_name)}`);
-          return params.length ? `/?${params.join("&")}` : "/";
+          params.push(isViewOnly ? "View=true" : "create=true");
+          return `/?${params.join("&")}`;
         })()}
       />
 
@@ -113,8 +114,8 @@ export default function PreviewSpecial() {
                   if (special.f_id > 0) params.push(`fID=${special.f_id}`);
                   if (special.business_id > 0) params.push(`BusinessID=${special.business_id}`);
                   if (special.business_name) params.push(`business=${encodeURIComponent(special.business_name)}`);
-                  const query = params.length ? `?${params.join("&")}` : "";
-                  navigate(`/${query}`);
+                  params.push(isViewOnly ? "View=true" : "create=true");
+                  navigate(`/?${params.join("&")}`);
                 }}
                 className="flex-1 h-12 rounded-2xl font-semibold gap-2"
               >

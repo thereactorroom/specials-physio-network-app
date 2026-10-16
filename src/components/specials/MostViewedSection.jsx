@@ -34,7 +34,7 @@ export default function MostViewedSection({ specials }) {
     if (businessId) params.push(`BusinessID=${encodeURIComponent(businessId)}`);
     if (business) params.push(`business=${encodeURIComponent(business)}`);
     const query = params.length ? `?${params.join("&")}` : "";
-    navigate(`/specials/view/${special.id}${query}`);
+    navigate(`/specials/view/${special.id}${query ? query + "&" : "?"}create=false`);
   };
 
   return (

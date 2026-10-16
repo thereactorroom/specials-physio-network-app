@@ -34,7 +34,8 @@ export default function CommunityTile({ special }) {
   const handleOpen = () => {
     sessionStorage.setItem("preview-special", JSON.stringify(special));
     sessionStorage.removeItem("app_create_mode");
-    navigate(`/specials/view/${special.id}${buildQuery()}`);
+    const baseQuery = buildQuery();
+    navigate(`/specials/view/${special.id}${baseQuery ? baseQuery + "&" : "?"}create=false`);
   };
 
   const handleViewLog = (e) => {

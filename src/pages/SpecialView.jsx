@@ -31,10 +31,14 @@ export default function SpecialView() {
     const admin = getParamCaseInsensitive("Admin");
     const businessId = getParamCaseInsensitive("BusinessID");
     const business = getParamCaseInsensitive("business");
+    const create = getParamCaseInsensitive("create");
+    const view = getParamCaseInsensitive("View");
     if (fId) params.push(`fID=${encodeURIComponent(fId)}`);
     if (businessId) params.push(`BusinessID=${encodeURIComponent(businessId)}`);
     if (business) params.push(`business=${encodeURIComponent(business)}`);
     if (admin) params.push(`Admin=${encodeURIComponent(admin)}`);
+    if (create) params.push(`create=${encodeURIComponent(create)}`);
+    if (view) params.push(`View=${encodeURIComponent(view)}`);
     return params.length ? `?${params.join("&")}` : "";
   };
 

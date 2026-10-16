@@ -11,7 +11,7 @@ export default function SpecialCard({ special, onEdit, onPause, onResume, onCanc
 
   const handlePreview = () => {
     sessionStorage.setItem("preview-special", JSON.stringify(special));
-    navigate(`/specials/preview?id=${special.id}&view=true${viewOnly ? "&viewonly=true" : ""}`);
+    navigate(`/specials/preview?id=${special.id}&view=true${viewOnly ? "&viewonly=true&View=true" : "&create=true"}`);
   };
 
   return (

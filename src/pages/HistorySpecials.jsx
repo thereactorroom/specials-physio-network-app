@@ -20,7 +20,8 @@ export default function HistorySpecials() {
     if (fId > 0) params.push(`fID=${fId}`);
     if (businessId > 0) params.push(`BusinessID=${businessId}`);
     if (businessParam) params.push(`business=${encodeURIComponent(businessParam)}`);
-    return params.length ? `?${params.join("&")}` : "";
+    params.push("create=true");
+    return `?${params.join("&")}`;
   };
   const businessQuery = buildNavQuery();
 
